@@ -1,0 +1,22 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background: #f9f9f9;
+}
+#food-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.food-card {
+  border: 1px solid #ccc;
+  background: white;
+  padding: 10px;
+  width: 200px;
+  border-radius: 8px;
+}
+.food-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
