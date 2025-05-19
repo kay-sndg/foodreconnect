@@ -1,37 +1,228 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
-    <link rel="stylesheet" href="/css/style.css" >
+    <title>FoodConnect - Reduce Food Waste in Singapore</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <main class="container">
-        <!-- Navbar which can be reused across other pages -->
-        <%- include('../partials/navbar'); %>
-
-        <!-- Information welcoming visitors to my page -->
-        <div class="welcome-container">
-            <h1>Welcome to my blog</h1>
-            <h2>Learn about what happened in my day!</h2>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="images/logo.svg" alt="FoodConnect Logo">
+                    <a href="index.html">FoodConnect</a>
+                </div>
+                <div class="nav-links">
+                    <a href="browse.html">Browse Foods</a>
+                    <a href="about.html">About Us</a>
+                    <a href="how-it-works.html">How It Works</a>
+                </div>
+                <div class="auth-buttons">
+                    <a href="notifications.html" class="notification-icon">
+                        <i class="fas fa-bell"></i>
+                    </a>
+                    <a href="signin.html" class="btn btn-outline">Sign In</a>
+                    <a href="signup.html" class="btn btn-primary">Join Now</a>
+                </div>
+            </nav>
         </div>
+    </header>
 
-        <div class="new-post-btn-container">
-           <a href="/new" class="button" role="button">+ New Post</a>
-        </div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="banner">
+                    <div class="tag">Reduce Food Waste in Singapore</div>
+                    <h1>Connect Surplus Food with <span class="highlight">Hungry People</span></h1>
+                    <p>FoodConnect helps event organizers quickly redistribute surplus food to nearby users, reducing waste and feeding communities.</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="post-food.html" class="btn btn-primary">
+                            <i class="fas fa-utensils"></i>
+                            Post Surplus Food
+                        </a>
+                        <a href="find-food.html" class="btn btn-secondary">
+                            <i class="fas fa-search"></i>
+                            Find Available Food
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- Show blog posts -->
-        <% blogs.forEach(post => { %>
-            <article class="post-container">
-                <h3><%= post.title %></h3>
-                <p><%= post.content %></p>
-                <form action="/delete/<%= post.id %>" method="post" onsubmit="return confirm('Do you really want to delete this post?');">
-                    <button class="outline primary" type="submit">Delete</button>
-                </form>
-            </article>
-        <% }); %>
+        <!-- Available Food Section -->
+        <section class="available-food">
+            <div class="container">
+                <h2>Available Food Right Now</h2>
+                <p>Check out these recently posted surplus food items</p>
+                
+                <div class="food-cards">
+                    <div class="food-card">
+                        <div class="food-image">
+                            <img src="images/sandwiches.jpg" alt="Assorted Finger Sandwiches">
+                            <span class="tag new">New</span>
+                        </div>
+                        <div class="food-info">
+                            <h3>Assorted Finger Sandwiches and Pastries</h3>
+                            <span class="category">Sandwiches</span>
+                            <p>Leftover catering from corporate event. Includes vegetarian options. All individually wrapped and fresh.</p>
+                            <div class="food-meta">
+                                <div class="location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Raffles Place, Downtown Core</span>
+                                </div>
+                                <div class="time">
+                                    <i class="far fa-clock"></i>
+                                    <span>Best before: Today, 9:00 PM</span>
+                                </div>
+                                <div class="servings">
+                                    <i class="fas fa-users"></i>
+                                    <span>Serves approx. 15</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                        <div class="food-image">
+                            <img src="images/indian-buffet.jpg" alt="Vegetarian Buffet Items">
+                        </div>
+                        <div class="food-info">
+                            <h3>Vegetarian Buffet Items - Indian Cuisine</h3>
+                            <span class="category">Indian</span>
+                            <p>Surplus food from wedding reception. Contains dal, vegetable curry, rice, and naan bread. Well maintained at proper temperature.</p>
+                            <div class="food-meta">
+                                <div class="location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Little India</span>
+                                </div>
+                                <div class="time">
+                                    <i class="far fa-clock"></i>
+                                    <span>Best before: Today, 10:30 PM</span>
+                                </div>
+                                <div class="servings">
+                                    <i class="fas fa-users"></i>
+                                    <span>Serves approx. 25</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="food-card">
+                        <div class="food-image">
+                            <img src="images/cheese-platter.jpg" alt="Gourmet Cheese Platter">
+                            <span class="tag new">New</span>
+                        </div>
+                        <div class="food-info">
+                            <h3>Gourmet Cheese Platter and Fruits</h3>
+                            <span class="category">Appetizers</span>
+                            <p>Untouched cheese board from networking event. Premium selection with crackers and fresh fruit.</p>
+                            <div class="food-meta">
+                                <div class="location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Marina Bay Sands</span>
+                                </div>
+                                <div class="time">
+                                    <i class="far fa-clock"></i>
+                                    <span>Best before: Today, 8:00 PM</span>
+                                </div>
+                                <div class="servings">
+                                    <i class="fas fa-users"></i>
+                                    <span>Serves approx. 10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="view-more">
+                    <a href="browse.html" class="btn btn-outline">View More Available Food</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="how-it-works">
+            <div class="container">
+                <h2>How FoodConnect Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3>Post Surplus Food</h3>
+                        <p>Event organizers upload details and photos of surplus food items with expiration time and location.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3>Connect Locally</h3>
+                        <p>Users nearby can see available food items based on their location and preferences.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Arrange Pickup</h3>
+                        <p>Request pickup and coordinate directly with the provider for seamless collection.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Reduce Waste</h3>
+                        <p>By redistributing surplus food, we collectively reduce waste and help feed the community.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.svg" alt="FoodConnect Logo">
+                    <p>Connecting surplus food with hungry people in Singapore</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h4>Platform</h4>
+                        <a href="browse.html">Browse Foods</a>
+                        <a href="post-food.html">Post Surplus Food</a>
+                        <a href="how-it-works.html">How It Works</a>
+                    </div>
+                    <div class="link-column">
+                        <h4>Company</h4>
+                        <a href="about.html">About Us</a>
+                        <a href="impact.html">Our Impact</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+                    <div class="link-column">
+                        <h4>Resources</h4>
+                        <a href="faq.html">FAQ</a>
+                        <a href="food-safety.html">Food Safety</a>
+                        <a href="blog.html">Blog</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 FoodConnect. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
