@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// API Routes
+// API routes
 app.use('/api/foods', foodRoutes);
 app.use('/api/pickups', pickupRoutes);
 app.use('/api/users', userRoutes);
@@ -25,10 +25,10 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date() });
 });
 
-// Serve static files from the frontend directory
+// ✅ Serve frontend statically
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-// Fallback route: always serve index.html for any other GET request
+// ✅ Fallback to index.html for unknown routes (SPA support)
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
