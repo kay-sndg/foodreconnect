@@ -4,8 +4,6 @@ const cors = require('cors');
 const foodRoutes = require('./routes/foods');
 const pickupRoutes = require('./routes/pickups');
 const userRoutes = require('./routes/users');
-const pickupRoutes = require('./routes/pickups');
-const userRoutes = require('./routes/users');
 const { initDatabase } = require('./db');
 
 const app = express();
@@ -15,8 +13,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/foods', foodRoutes);
-app.use('/api/pickups', pickupRoutes);
-app.use('/api/users', userRoutes);
 app.use('/api/pickups', pickupRoutes);
 app.use('/api/users', userRoutes);
 
