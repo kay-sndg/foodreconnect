@@ -1,7 +1,7 @@
 // scripts.js
 const API_URL = window.location.hostname === 'localhost' 
   ? 'http://localhost:3000/api' 
-  : 'https://your-app-name.onrender.com/api';
+  : 'https://foodreconnect.onrender.com/';
 
 // Notifications
 function showNotification(message, type = 'success') {
