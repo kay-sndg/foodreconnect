@@ -1,26 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { addFoodItem, getNearbyFood } = require('../models/food');
+const controller = require('../controllers/foodController');
 
-router.post('/', async (req, res) => {
-  try {
-    const food = await addFoodItem(req.body);
-    res.status(201).json(food);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-router.get('/nearby', async (req, res) => {
-  const { lat, lng } = req.query;
-  if (!lat || !lng) return res.status(400).json({ error: 'Missing lat/lng' });
-
-  try {
-    const items = await getNearbyFood(parseFloat(lat), parseFloat(lng));
-    res.json(items);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+router.get('/', controller.getAllFoods);
+router.get('/nearby', controller.getNearbyFoods);
+router.get('/:id', controller.getFoodById);
+router.post('/', controller.createFood);
+router.put('/:id', controller.updateFood);
+router.delete('/:id', controller.deleteFood);
 
 module.exports = router;
