@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FoodConnect - Reduce Food Waste</title>
+  <title>FoodReconnect - Reduce Food Waste</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -28,7 +28,7 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero page" id="home-page">
     <div class="hero-content">
       <div class="tagline">Reduce Food Waste in Singapore</div>
       <h1>Connect Surplus Food with <span class="highlight">Hungry People</span></h1>
@@ -41,7 +41,7 @@
   </section>
 
   <!-- Available Food Section -->
-  <section class="foods-section" id="browse">
+  <section class="foods-section page" id="browse">
     <div class="section-header">
       <h2>Available Food Right Now</h2>
       <p>Check out these recently posted surplus food items</p>
@@ -50,15 +50,16 @@
       <!-- Food items will be dynamically loaded here -->
     </div>
   </section>
-  
-<!-- About Page Section -->
+
+  <!-- About Page Section -->
   <div id="about-page" class="page" style="display: none;">
     <section class="section-header">
-      <h1>About FoodConnect</h1>
+      <h1>About Us</h1>
       <p>Tackling food waste at events, one plate at a time.</p>
     </section>
 
     <section class="about-content">
+      <h2>About FoodConnect</h2>
       <p>Every year in Singapore, food waste remains one of the largest contributors to environmental impact, with over <strong>813,000 tonnes</strong> wasted in 2022 alone. Much of this comes from large-scale catered events where organisers over-order to prevent food shortages.</p>
 
       <p><strong>FoodConnect</strong> is a community-driven solution designed to bridge this gap. Our platform helps <strong>event organisers</strong> like corporate planners, wedding coordinators, and community managers quickly and easily share surplus food with nearby individuals who can make use of it.</p>
@@ -134,6 +135,5 @@
   <div id="notification" class="notification"></div>
 
   <script src="scripts.js" defer></script>
-  
 </body>
 </html>
