@@ -1,0 +1,39 @@
+<!-- auth.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodConnect - Sign In / Register</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="auth-container">
+    <h2>Join FoodConnect</h2>
+
+    <form id="registerForm" class="auth-form">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone">
+      </div>
+      <div class="form-group">
+        <label for="organization">Organization</label>
+        <input type="text" id="organization">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%;">Register</button>
+    </form>
+
+    <div id="notification" class="notification"></div>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>
