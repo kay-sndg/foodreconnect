@@ -158,8 +158,28 @@ document.getElementById('postFoodForm').addEventListener('submit', async (e) => 
   }
 });
 
+// Page Routing
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+  const target = document.getElementById(pageId);
+  if (target) target.style.display = 'block';
+}
+
 // Init
-window.addEventListener('DOMContentLoaded', loadFoods);
+document.addEventListener('DOMContentLoaded', () => {
+  loadFoods();
+
+  // JS routing link
+  const aboutLink = document.querySelector('a[href="#about"]');
+  if (aboutLink) {
+    aboutLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage('about-page');
+    });
+  }
+});
+
+// Modal close on outside click
 window.onclick = function(event) {
   if (event.target.classList.contains('modal')) {
     event.target.style.display = 'none';
