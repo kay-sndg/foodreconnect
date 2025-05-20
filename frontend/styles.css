@@ -279,8 +279,15 @@ body {
   color: #666;
 }
 
+.modal {
+  position: absolute !important;
+}
+
+#postFoodForm .form-group input{
+  font-size: 0.7em;
+}
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.0rem;
 }
 
 .form-group label {
