@@ -1,26 +1,82 @@
-<!-- about.html - JavaScript routed version -->
-<div id="about-page" class="page" style="display: none;">
-  <section class="section-header">
-    <h1>About FoodConnect</h1>
-    <p>Tackling food waste at events, one plate at a time.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - FoodConnect</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="logo">
+          <i class="fas fa-seedling logo-icon"></i>
+          FoodConnect
+        </a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html" class="active">About Us</a>
+          <a href="how-it-works.html">How It Works</a>
+        </div>
+        <div class="auth-buttons">
+          <a href="#" class="btn btn-outline">Sign In</a>
+          <a href="#" class="btn btn-primary">Join Now</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Our Mission</h1>
+      <p>At FoodConnect, we're committed to reducing food waste in Singapore by connecting surplus food from events with people who need it.</p>
+    </div>
   </section>
 
-  <section class="about-content">
-    <p>Every year in Singapore, food waste remains one of the largest contributors to environmental impact, with over <strong>813,000 tonnes</strong> wasted in 2022 alone. Much of this comes from large-scale catered events where organisers over-order to prevent food shortages.</p>
-
-    <p><strong>FoodConnect</strong> is a community-driven solution designed to bridge this gap. Our platform helps <strong>event organisers</strong> like corporate planners, wedding coordinators, and community managers quickly and easily share surplus food with nearby individuals who can make use of it.</p>
-
-    <p>At the end of an event, food providers simply upload a description, image, and location of available food. Our system uses <strong>geolocation technology</strong> to connect this surplus with users in the area who can opt to pick it up—reducing waste and benefiting the community.</p>
-
-    <h2>Why It Matters</h2>
-    <ul>
-      <li>📍 Events often end with excess food due to over-catering.</li>
-      <li>♻️ Redistribution opportunities are limited by time and reach.</li>
-      <li>🌏 Minimising food waste helps combat climate change and supports food security.</li>
-    </ul>
-
-    <p>This project aligns with Singapore’s broader vision for sustainability, supported by initiatives like the NEA’s push for improved recycling and waste reduction. In 2022, recycling rates improved from 55% to 57%—but we believe food rescue must also be a priority.</p>
-
-    <p>By empowering communities to act in real time, FoodConnect is proud to be part of the movement toward a <strong>zero-waste future</strong>.</p>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">About FoodConnect</h2>
+      <div class="mission-content">
+        <div class="mission-text">
+          <h3>The Problem We're Solving</h3>
+          <p>Food waste is a significant issue in Singapore, with 813,000 tonnes wasted in 2022 alone. Event organizers often over-order food to ensure guest satisfaction, resulting in substantial leftovers with no efficient way to redistribute them.</p>
+          <p>We identified that event organizers – whether they're planning corporate functions, weddings, or community gatherings – face a common challenge: what to do with excess food at the end of their events, especially when they're in unfamiliar areas.</p>
+          <h3>Our Solution</h3>
+          <p>FoodConnect bridges this gap by providing a platform that connects event organizers with nearby users who can benefit from surplus food. Organizers can post details and photos of leftover items, while users can view and claim food in their area.</p>
+          <p>Our platform uses geolocation to match surplus food with recipients nearby, ensuring efficient redistribution. It’s a win-win: less food waste, more people helped.</p>
+        </div>
+        <div class="mission-image">
+          <img src="/api/placeholder/600/400" alt="Food redistribution in action">
+        </div>
+      </div>
+    </div>
   </section>
-</div>
+
+  <section class="stats">
+    <div class="container">
+      <div class="stats-container">
+        <div class="stat-item">
+          <h3>813,000</h3>
+          <p>Tonnes of food wasted in Singapore (2022)</p>
+        </div>
+        <div class="stat-item">
+          <h3>30%</h3>
+          <p>Average food surplus at catered events</p>
+        </div>
+        <div class="stat-item">
+          <h3>15 min</h3>
+          <p>Average time to connect surplus with recipients</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p class="footer-text">&copy; 2025 FoodConnect. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
