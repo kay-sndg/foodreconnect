@@ -1,7 +1,4 @@
 // scripts.js
-// const API_URL = window.location.hostname === 'localhost' 
-//   ? 'http://localhost:3000/api' 
-//   : 'https://foodreconnect.onrender.com/';
 
 const API_URL = "./api";
 
@@ -187,3 +184,4 @@ window.onclick = function(event) {
     event.target.style.display = 'none';
   }
 };
+

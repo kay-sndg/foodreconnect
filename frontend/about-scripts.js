@@ -1,28 +1,33 @@
 // about-scripts.js
 
-// Requesting user's location
-function getUserLocation() {
+document.addEventListener('DOMContentLoaded', function () {
+    const browseFoodsLink = document.getElementById('browseFoodsLink');
+
+    if (browseFoodsLink) {
+        browseFoodsLink.addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent default anchor jump
+            getUserLocationAndRedirect();
+        });
+    }
+});
+
+// Get user's location and redirect to homepage with location info
+function getUserLocationAndRedirect() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showNearbyFood, handleError);
+        navigator.geolocation.getCurrentPosition((position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            // Redirect to index.html with lat/lon in URL hash
+            window.location.href = `index.html#browse?lat=${lat}&lon=${lon}`;
+        }, handleError);
     } else {
         alert("Geolocation is not supported by this browser.");
     }
 }
 
-function showNearbyFood(position) {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-
-    // Call the backend API here to get food items near the user's location
-    console.log("User's Latitude: " + lat + " and Longitude: " + lon);
-}
-
+// Fallback in case location can't be retrieved
 function handleError(error) {
-    console.error("Error occurred. Error code: " + error.code);
+    console.error("Geolocation error:", error);
     alert("Unable to retrieve your location. Please try again.");
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Call getUserLocation function when page loads
-    getUserLocation();
-});
