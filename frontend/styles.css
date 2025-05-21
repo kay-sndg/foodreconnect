@@ -249,28 +249,32 @@ body {
 }
 
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
+  z-index: 1000;
   top: 0;
   left: 0;
-  z-index: 1000;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* Greyed-out background */
+  background-color: rgba(0,0,0,0.5); /* Darken background */
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: auto; /* Allow scrolling if content is too tall */
+  padding: 2rem;
 }
 
 .modal-content {
   background-color: white;
   border-radius: 12px;
   padding: 2rem;
-  width: 90%;
-  max-width: 500px;
+  max-width: 600px;
+  width: 100%;
   position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  max-height: 90vh; /* Prevent it from being taller than screen */
+  overflow-y: auto; /* Make internal content scrollable if needed */
   animation: fadeIn 0.3s ease-in-out;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes fadeIn {
