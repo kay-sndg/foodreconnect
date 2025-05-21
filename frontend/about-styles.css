@@ -1,82 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - FoodConnect</title>
-    <link rel="stylesheet" href="frontend/about-styles.css">
-</head>
-<body>
-    <header>
-        <div class="navbar">
-            <a href="#" class="logo"><span class="logo-icon">🍽</span> FoodConnect</a>
-            <nav class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">About Us</a>
-                <a href="#">Contact</a>
-            </nav>
-        </div>
-    </header>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
 
-    <section class="hero">
-        <h1>Welcome to FoodConnect</h1>
-        <p>We reduce food waste in Singapore by connecting event organizers with people in need of surplus food.</p>
-    </section>
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #8BC34A;
+  padding: 1rem 2rem;
+  color: white;
+}
 
-    <section class="section mission">
-        <h2 class="section-title">Our Mission</h2>
-        <div class="mission-content">
-            <div class="mission-text">
-                <h3>Reducing Food Waste</h3>
-                <p>Event organizers often face excess food after events. Our platform connects them with people nearby who can take the food and reduce waste.</p>
-            </div>
-            <div class="mission-image">
-                <img src="path-to-image.jpg" alt="Mission Image">
-            </div>
-        </div>
-    </section>
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
 
-    <section class="features">
-        <h2 class="section-title">Key Features</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">📍</div>
-                <h3>Geolocation-based Matching</h3>
-                <p>Find nearby food items that are available for pickup.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📷</div>
-                <h3>Upload Surplus Food</h3>
-                <p>Event organizers can upload food details and images for redistribution.</p>
-            </div>
-        </div>
-    </section>
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
 
-    <section class="cta">
-        <h2>Join Us Today</h2>
-        <p>Help reduce food waste and make a positive impact in your community by joining our platform.</p>
-        <div class="cta-buttons">
-            <a href="#" class="btn btn-white">Become a Contributor</a>
-            <a href="#" class="btn btn-outline-white">Find Food Nearby</a>
-        </div>
-    </section>
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #e8f5e9;
+}
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>About</h3>
-                <ul>
-                    <li><a href="#">Our Mission</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2025 FoodConnect. All rights reserved.</p>
-        </div>
-    </footer>
+.section-title {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.8rem;
+}
 
-    <script src="about-scripts.js"></script>
-</body>
-</html>
+.mission-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
+.mission-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.mission-image img {
+  max-width: 500px;        /* Limit max width */
+  width: 100%;             /* Responsive */
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.features-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
+.feature-card {
+  background-color: white;
+  padding: 1.5rem;
+  margin: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 250px;
+  text-align: center;
+}
+
+.cta {
+  text-align: center;
+  padding: 2rem;
+  background-color: #aed581;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0.5rem;
+}
+
+.btn-white {
+  background-color: white;
+  color: #4CAF50;
+}
+
+.btn-outline-white {
+  border: 2px solid white;
+  color: white;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  background-color: #558B2F;
+  color: white;
+  padding: 2rem;
+}
+
+.footer-column ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-column li {
+  margin: 0.5rem 0;
+}
+
+.footer-column a {
+  text-decoration: none;
+  color: white;
+}
+
+footer {
+  background-color: #33691E;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
