@@ -97,8 +97,9 @@ function openPickupModal(title, number) {
   currentPickup.whatsapp = number;
   document.getElementById('pickupFoodTitle').textContent = title;
   document.getElementById('pickupQuantity').value = '';
-  document.getElementById('pickupModal').style.display = 'block';
+  document.getElementById('pickupModal').style.display = 'flex';
 }
+
 
 function confirmPickup() {
   const quantity = document.getElementById('pickupQuantity').value;
