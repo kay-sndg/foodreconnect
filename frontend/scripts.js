@@ -80,10 +80,34 @@ function createFoodCard(food) {
           <div class="meta-item">Best before: ${new Date(food.best_before).toLocaleString()}</div>
           <div class="meta-item">Serves approx. ${food.servings}</div>
         </div>
-        <button class="btn btn-primary" style="width: 100%;">Request Pickup</button>
+        <button class="btn btn-primary" style="width: 100%;" onclick="openPickupModal('${food.title}', '${food.whatsapp_number}')">Request Pickup</button>
+
+        
       </div>
     </div>
   `;
+}
+let currentPickup = {
+  foodTitle: '',
+  whatsapp: ''
+};
+
+function openPickupModal(title, number) {
+  currentPickup.foodTitle = title;
+  currentPickup.whatsapp = number;
+  document.getElementById('pickupFoodTitle').textContent = title;
+  document.getElementById('pickupQuantity').value = '';
+  document.getElementById('pickupModal').style.display = 'block';
+}
+
+function confirmPickup() {
+  const quantity = document.getElementById('pickupQuantity').value;
+  const encodedMsg = encodeURIComponent(
+    `Hi, I would like to request ${quantity} serving(s) of "${currentPickup.foodTitle}" via FoodReconnect.`
+  );
+  const phone = currentPickup.whatsapp.replace(/\D/g, ''); // clean number
+  const waUrl = `https://wa.me/${phone}?text=${encodedMsg}`;
+  window.open(waUrl, '_blank');
 }
 
 function displayMockFoods() {
@@ -135,7 +159,9 @@ document.getElementById('postFoodForm').addEventListener('submit', async (e) => 
     location: document.getElementById('pickupLocation').value,
     image_url: document.getElementById('imageUrl').value || null,
     latitude: parseFloat(document.getElementById('pickupLocation').dataset.lat) || null,
-    longitude: parseFloat(document.getElementById('pickupLocation').dataset.lng) || null
+    longitude: parseFloat(document.getElementById('pickupLocation').dataset.lng) || null,
+    whatsapp_number: document.getElementById('whatsappNumber').value
+
   };
 
   try {

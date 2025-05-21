@@ -124,6 +124,10 @@
           <label>Image URL (optional)</label>
           <input type="url" id="imageUrl" placeholder="https://example.com/image.jpg" />
         </div>
+        <div class="form-group">
+          <label>WhatsApp Number</label>
+          <input type="tel" id="whatsappNumber" placeholder="+65..." required />
+        </div>
         <button type="submit" class="btn btn-primary" style="width: 100%;">Post Food</button>
       </form>
     </div>
@@ -131,6 +135,18 @@
 
   <!-- Notifications -->
   <div id="notification" class="notification"></div>
+
+  <!-- Request Pickup Modal-->
+  <div id="pickupModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal('pickupModal')">&times;</span>
+    <h2>Request Food Pickup</h2>
+    <p id="pickupFoodTitle"></p>
+    <label for="pickupQuantity">How many servings would you like to pick up?</label>
+    <input type="number" id="pickupQuantity" min="1" required />
+    <button class="btn btn-primary" onclick="confirmPickup()">Confirm & Message via WhatsApp</button>
+  </div>
+</div>
 
   <script src="scripts.js" defer></script>
 </body>
