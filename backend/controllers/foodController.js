@@ -51,16 +51,33 @@ exports.createFood = async (req, res) => {
   try {
     const {
       title, category, description, cuisine_type, servings,
-      best_before, location, latitude, longitude, image_url, provider_id
+      best_before, location, latitude, longitude, image_url,
+      provider_id, whatsapp_number // ✅ Added this field
     } = req.body;
+
+    // ✅ Basic validation
+    if (!title || !category || !location || !whatsapp_number) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+
     const result = await pool.query(
-      `INSERT INTO foods (title, category, description, cuisine_type, servings, best_before, location, latitude, longitude, image_url, provider_id)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
-       RETURNING *`,
-      [title, category, description, cuisine_type, servings, best_before, location, latitude, longitude, image_url, provider_id || 1]
+      `INSERT INTO foods (
+        title, category, description, cuisine_type, servings,
+        best_before, location, latitude, longitude, image_url,
+        provider_id, whatsapp_number
+      )
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+      RETURNING *`,
+      [
+        title, category, description, cuisine_type, servings,
+        best_before, location, latitude, longitude, image_url,
+        provider_id || 1, whatsapp_number
+      ]
     );
+
     res.status(201).json(result.rows[0]);
   } catch (err) {
+    console.error('Error inserting food:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 };

@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS foods (
     longitude DECIMAL(11, 8),
     image_url TEXT,
     provider_id INTEGER REFERENCES users(id),
+    whatsapp_number VARCHAR(20) NOT NULL, -- ✅ added
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status VARCHAR(50) DEFAULT 'available'
@@ -47,10 +48,31 @@ INSERT INTO users (name, email, phone, organization) VALUES
     ('Jane Smith', 'jane@example.com', '+65 9876 5432', 'Wedding Planners Association'),
     ('Mike Chen', 'mike@example.com', '+65 8765 4321', 'Community Center');
 
-INSERT INTO foods (title, category, description, cuisine_type, servings, best_before, location, latitude, longitude, image_url, provider_id) VALUES
-    ('Assorted Finger Sandwiches and Pastries', 'Sandwiches', 'Leftover catering from corporate event. Includes vegetarian options. All individually wrapped and fresh.', 'Western', 15, CURRENT_TIMESTAMP + INTERVAL '5 hours', 'Raffles Place, Downtown Core', 1.2847, 103.8514, 'https://example.com/sandwich.jpg', 1),
-    ('Vegetarian Buffet Items - Indian Cuisine', 'Buffet', 'Surplus food from wedding reception. Contains dal, vegetable curry, rice, and naan bread. Well maintained at proper temperature.', 'Indian', 25, CURRENT_TIMESTAMP + INTERVAL '3 hours', 'Little India', 1.3066, 103.8494, 'https://example.com/indian.jpg', 2),
-    ('Gourmet Cheese Platter and Fruits', 'Appetizers', 'Untouched cheese board from networking event. Premium selection with crackers and fresh fruit.', 'International', 10, CURRENT_TIMESTAMP + INTERVAL '4 hours', 'Marina Bay Sands', 1.2838, 103.8607, 'https://example.com/cheese.jpg', 1);
+INSERT INTO foods (
+    title, category, description, cuisine_type, servings, best_before,
+    location, latitude, longitude, image_url, provider_id, whatsapp_number
+) VALUES
+    (
+      'Assorted Finger Sandwiches and Pastries', 'Sandwiches',
+      'Leftover catering from corporate event. Includes vegetarian options. All individually wrapped and fresh.',
+      'Western', 15, CURRENT_TIMESTAMP + INTERVAL '5 hours',
+      'Raffles Place, Downtown Core', 1.2847, 103.8514,
+      'https://example.com/sandwich.jpg', 1, '+6591234567'
+    ),
+    (
+      'Vegetarian Buffet Items - Indian Cuisine', 'Buffet',
+      'Surplus food from wedding reception. Contains dal, vegetable curry, rice, and naan bread. Well maintained at proper temperature.',
+      'Indian', 25, CURRENT_TIMESTAMP + INTERVAL '3 hours',
+      'Little India', 1.3066, 103.8494,
+      'https://example.com/indian.jpg', 2, '+6598765432'
+    ),
+    (
+      'Gourmet Cheese Platter and Fruits', 'Appetizers',
+      'Untouched cheese board from networking event. Premium selection with crackers and fresh fruit.',
+      'International', 10, CURRENT_TIMESTAMP + INTERVAL '4 hours',
+      'Marina Bay Sands', 1.2838, 103.8607,
+      'https://example.com/cheese.jpg', 1, '+6587654321'
+    );
 
 -- Create a view for available foods with provider info
 CREATE VIEW available_foods_view AS
