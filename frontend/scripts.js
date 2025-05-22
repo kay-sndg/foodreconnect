@@ -15,12 +15,13 @@ function showNotification(message, type = 'success') {
 
 // Modal Controls
 function showPostFoodModal() {
-  document.getElementById('postFoodModal').style.display = 'block';
+  document.getElementById('postFoodModal').classList.add('show');
 }
 
 function closeModal(modalId) {
-  document.getElementById(modalId).style.display = 'none';
+  document.getElementById(modalId).classList.remove('show');
 }
+
 
 // Geolocation
 function getCurrentLocation() {

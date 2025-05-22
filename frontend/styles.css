@@ -262,6 +262,10 @@ body {
   overflow: auto; /* Allow scrolling if content is too tall */
   padding: 2rem;
 }
+/* When modal is shown, make it a flex container */
+.modal.show {
+  display: flex;
+}
 
 .modal-content {
   background-color: white;
