@@ -15,6 +15,9 @@ const { initDatabase } = require('./db');
 app.use(cors());
 app.use(express.json());
 
+// ✅ Serve uploaded images publicly
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // API routes
 app.use('/api/foods', foodRoutes);
 app.use('/api/pickups', pickupRoutes);
