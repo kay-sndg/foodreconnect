@@ -175,6 +175,32 @@ async function findNearbyFood() {
 // Form Submit
 document.getElementById('postFoodForm').addEventListener('submit', async (e) => {
   e.preventDefault();
+
+  const locationInput = document.getElementById('pickupLocation');
+
+  let latitude = parseFloat(locationInput.dataset.lat) || null;
+  let longitude = parseFloat(locationInput.dataset.lng) || null;
+
+  // Fallback: try geocoding again if lat/lng are still null
+  if (!latitude || !longitude) {
+    try {
+      const geoRes = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(locationInput.value)}&format=json&limit=1`);
+      const geoData = await geoRes.json();
+      if (geoData.length > 0) {
+        latitude = parseFloat(geoData[0].lat);
+        longitude = parseFloat(geoData[0].lon);
+        locationInput.dataset.lat = latitude;
+        locationInput.dataset.lng = longitude;
+        showNotification('Coordinates auto-filled on submit');
+      } else {
+        showNotification('Unable to determine coordinates from address', 'error');
+      }
+    } catch (err) {
+      console.error('Geocoding on submit failed:', err);
+      showNotification('Error geocoding address on submit', 'error');
+    }
+  }
+
   const formData = {
     title: document.getElementById('foodTitle').value,
     category: document.getElementById('foodCategory').value,
@@ -182,10 +208,10 @@ document.getElementById('postFoodForm').addEventListener('submit', async (e) => 
     cuisine_type: document.getElementById('cuisineType').value,
     servings: parseInt(document.getElementById('servings').value),
     best_before: document.getElementById('bestBefore').value,
-    location: document.getElementById('pickupLocation').value,
+    location: locationInput.value,
     image_url: document.getElementById('imageUrl').value || null,
-    latitude: parseFloat(document.getElementById('pickupLocation').dataset.lat) || null,
-    longitude: parseFloat(document.getElementById('pickupLocation').dataset.lng) || null,
+    latitude,
+    longitude,
     whatsapp_number: document.getElementById('whatsappNumber').value
   };
 
@@ -195,6 +221,7 @@ document.getElementById('postFoodForm').addEventListener('submit', async (e) => 
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     });
+
     if (response.ok) {
       showNotification('Food posted successfully!');
       closeModal('postFoodModal');
@@ -204,9 +231,11 @@ document.getElementById('postFoodForm').addEventListener('submit', async (e) => 
       showNotification('Error posting food', 'error');
     }
   } catch (error) {
+    console.error('Submit error:', error);
     showNotification('Error: ' + error.message, 'error');
   }
 });
+
 
 // Page Routing
 function showPage(pageId) {
