@@ -19,9 +19,10 @@ function showPostFoodModal() {
 }
 
 function closeModal(modalId) {
-  document.getElementById(modalId).classList.remove('show');
+  const modal = document.getElementById(modalId);
+  modal.classList.remove('show');
+  modal.style.display = 'none';
 }
-
 
 // Geolocation
 function getCurrentLocation() {
@@ -46,6 +47,32 @@ function getCurrentLocation() {
   }
 }
 
+// Geocode typed-in address on blur
+document.addEventListener('DOMContentLoaded', () => {
+  const locationInput = document.getElementById('pickupLocation');
+  if (locationInput) {
+    locationInput.addEventListener('blur', async () => {
+      const address = locationInput.value.trim();
+      if (!address) return;
+
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=1`);
+        const data = await res.json();
+        if (data.length > 0) {
+          const { lat, lon } = data[0];
+          locationInput.dataset.lat = lat;
+          locationInput.dataset.lng = lon;
+          showNotification('Coordinates updated from address');
+        } else {
+          showNotification('Unable to geocode address', 'error');
+        }
+      } catch (error) {
+        showNotification('Geocoding error: ' + error.message, 'error');
+      }
+    });
+  }
+});
+
 // Load Foods
 async function loadFoods() {
   try {
@@ -58,7 +85,6 @@ async function loadFoods() {
   }
 }
 
-// Display Foods
 function displayFoods(foods) {
   const foodGrid = document.getElementById('foodGrid');
   foodGrid.innerHTML = foods.map(food => createFoodCard(food)).join('');
@@ -82,12 +108,11 @@ function createFoodCard(food) {
           <div class="meta-item">Serves approx. ${food.servings}</div>
         </div>
         <button class="btn btn-primary" style="width: 100%;" onclick="openPickupModal('${food.title}', '${food.whatsapp_number}')">Request Pickup</button>
-
-        
       </div>
     </div>
   `;
 }
+
 let currentPickup = {
   foodTitle: '',
   whatsapp: ''
@@ -101,13 +126,12 @@ function openPickupModal(title, number) {
   document.getElementById('pickupModal').style.display = 'flex';
 }
 
-
 function confirmPickup() {
   const quantity = document.getElementById('pickupQuantity').value;
   const encodedMsg = encodeURIComponent(
     `Hi, I would like to request ${quantity} serving(s) of "${currentPickup.foodTitle}" via FoodReconnect.`
   );
-  const phone = currentPickup.whatsapp.replace(/\D/g, ''); // clean number
+  const phone = currentPickup.whatsapp.replace(/\D/g, '');
   const waUrl = `https://wa.me/${phone}?text=${encodedMsg}`;
   window.open(waUrl, '_blank');
 }
@@ -163,7 +187,6 @@ document.getElementById('postFoodForm').addEventListener('submit', async (e) => 
     latitude: parseFloat(document.getElementById('pickupLocation').dataset.lat) || null,
     longitude: parseFloat(document.getElementById('pickupLocation').dataset.lng) || null,
     whatsapp_number: document.getElementById('whatsappNumber').value
-
   };
 
   try {
@@ -196,7 +219,6 @@ function showPage(pageId) {
 document.addEventListener('DOMContentLoaded', () => {
   loadFoods();
 
-  // JS routing link
   const aboutLink = document.querySelector('a[href="#about"]');
   if (aboutLink) {
     aboutLink.addEventListener('click', (e) => {
@@ -212,4 +234,3 @@ window.onclick = function(event) {
     event.target.style.display = 'none';
   }
 };
-
