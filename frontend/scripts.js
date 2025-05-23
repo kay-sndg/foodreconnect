@@ -79,6 +79,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Nearby Food
+async function findNearbyFood() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const { latitude, longitude } = position.coords;
+      try {
+        const response = await fetch(`${API_URL}/foods/nearby?lat=${latitude}&lng=${longitude}`);
+        const foods = await response.json();
+        displayFoods(foods);
+        showNotification(`Found ${foods.length} food items near you`);
+      } catch (error) {
+        showNotification('Error finding nearby food', 'error');
+      }
+    }, (error) => {
+      showNotification('Please enable location to find nearby food', 'error');
+    });
+  }
+}
+
+
 // Submit Food Form with Image Upload
 const foodForm = document.getElementById('postFoodForm');
 foodForm.addEventListener('submit', async (e) => {
