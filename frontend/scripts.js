@@ -1,6 +1,6 @@
 // scripts.js
 
-const API_URL = "./api";
+const API_URL = "https://foodreconnect.onrender.com/api"; // Update this if your backend is hosted elsewhere
 
 // Notifications
 function showNotification(message, type = 'success') {
@@ -107,11 +107,19 @@ foodForm.addEventListener('submit', async (e) => {
   formData.append('latitude', latitude);
   formData.append('longitude', longitude);
 
+  // Debug log: show all form data entries
+  console.log('Submitting food post with fields:');
+  for (let [key, val] of formData.entries()) {
+    console.log(`${key}:`, val);
+  }
+
   try {
     const response = await fetch(`${API_URL}/foods`, {
       method: 'POST',
       body: formData,
     });
+
+    const result = await response.json();
 
     if (response.ok) {
       showNotification('Food posted successfully!');
@@ -119,10 +127,11 @@ foodForm.addEventListener('submit', async (e) => {
       loadFoods();
       foodForm.reset();
     } else {
-      showNotification('Error posting food', 'error');
+      console.error('Server response error:', result);
+      showNotification(result.error || 'Error posting food', 'error');
     }
   } catch (error) {
-    console.error('Submit error:', error);
+    console.error('Network or JS error:', error);
     showNotification('Error: ' + error.message, 'error');
   }
 });
