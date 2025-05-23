@@ -7,8 +7,8 @@ router.get('/', controller.getAllFoods);
 router.get('/nearby', controller.getNearbyFoods);
 router.get('/:id', controller.getFoodById);
 
-// ✅ Use multer for file upload in createFood route
-router.post('/', upload.single('image'), controller.createFood);
+// ✅ Use the correct field name here
+router.post('/', upload.single('foodImage'), controller.createFood);
 
 router.put('/:id', controller.updateFood);
 router.delete('/:id', controller.deleteFood);
