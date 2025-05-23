@@ -1,6 +1,7 @@
 // scripts.js
 
-const API_URL = "https://foodreconnect.onrender.com/api"; // Update this if your backend is hosted elsewhere
+//const API_URL = "https://foodreconnect.onrender.com/api"; // Update this if your backend is hosted elsewhere
+const API_URL = "/api";
 
 // Notifications
 function showNotification(message, type = 'success') {
@@ -155,10 +156,18 @@ function displayFoods(foods) {
 
 function createFoodCard(food) {
   const isNew = new Date() - new Date(food.created_at) < 24 * 60 * 60 * 1000;
+  var url = '';
+  if (food.food_image) {
+    const byteArray = new Uint8Array(food.food_image.data); // convert to typed array
+    const blob = new Blob([byteArray], { type: 'image/jpg' }); // or 'image/jpeg' depending on source
+    url = URL.createObjectURL(blob); // create an object URL
+  }
+// <img src="${food.image_url || '/api/placeholder/400/200'}" alt="${food.title}" class="food-image">  
+
   return `
     <div class="food-card">
       <div style="position: relative;">
-        <img src="${food.image_url || '/api/placeholder/400/200'}" alt="${food.title}" class="food-image">
+        <img src="${url}" alt="${food.title}" class="food-image">
         ${isNew ? '<span class="food-badge">New</span>' : ''}
       </div>
       <div class="food-details">

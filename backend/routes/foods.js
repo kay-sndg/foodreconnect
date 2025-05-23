@@ -9,6 +9,7 @@ router.get('/:id', controller.getFoodById);
 
 // ✅ Use the correct field name here
 router.post('/', upload.single('foodImage'), controller.createFood);
+//router.post('/', controller.createFood);
 
 router.put('/:id', controller.updateFood);
 router.delete('/:id', controller.deleteFood);

@@ -67,6 +67,7 @@ exports.createFood = async (req, res) => {
 
     // Get image file from multer (if provided)
     const image_url = req.file ? `/uploads/${req.file.filename}` : null;
+    const foodImage = req.file ? req.file.buffer : null;
 
     // Validate required fields
     if (!title || !category || !location || !whatsapp_number) {
@@ -77,14 +78,14 @@ exports.createFood = async (req, res) => {
       `INSERT INTO foods (
         title, category, description, cuisine_type, servings,
         best_before, location, latitude, longitude, image_url,
-        provider_id, whatsapp_number
+        provider_id, whatsapp_number, food_image
       )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
       RETURNING *`,
       [
         title, category, description, cuisine_type, servings,
         best_before, location, latitude, longitude, image_url,
-        provider_id || 1, whatsapp_number
+        provider_id || 1, whatsapp_number, foodImage
       ]
     );
 
