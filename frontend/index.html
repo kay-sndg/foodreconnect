@@ -8,15 +8,13 @@
   <link rel="stylesheet" href="styles.css">
 
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4MXERW64H1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4MXERW64H1');
-</script>
-
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MXERW64H1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4MXERW64H1');
+  </script>
 </head>
 <body>
   <!-- Navigation -->
@@ -30,7 +28,6 @@
         <a href="#browse">Browse Foods</a>
         <a href="about.html">About Us</a>
       </div>
-    
     </nav>
   </header>
 
@@ -58,34 +55,6 @@
     </div>
   </section>
 
-  <!-- About Page Section -->
-  <div id="about-page" class="page" style="display: none;">
-    <section class="section-header">
-      <h1>About Us</h1>
-      <p>Tackling food waste at events, one plate at a time.</p>
-    </section>
-
-    <section class="about-content">
-      <h2>About FoodReconnect</h2>
-      <p>Every year in Singapore, food waste remains one of the largest contributors to environmental impact, with over <strong>813,000 tonnes</strong> wasted in 2022 alone. Much of this comes from large-scale catered events where organisers over-order to prevent food shortages.</p>
-
-      <p><strong>FoodReconnect</strong> is a community-driven solution designed to bridge this gap. Our platform helps <strong>event organisers</strong> like corporate planners, wedding coordinators, and community managers quickly and easily share surplus food with nearby individuals who can make use of it.</p>
-
-      <p>At the end of an event, food providers simply upload a description, image, and location of available food. Our system uses <strong>geolocation technology</strong> to connect this surplus with users in the area who can opt to pick it up—reducing waste and benefiting the community.</p>
-
-      <h2>Why It Matters</h2>
-      <ul>
-        <li>📍 Events often end with excess food due to over-catering.</li>
-        <li>♻️ Redistribution opportunities are limited by time and reach.</li>
-        <li>🌏 Minimising food waste helps combat climate change and supports food security.</li>
-      </ul>
-
-      <p>This project aligns with Singapore’s broader vision for sustainability, supported by initiatives like the NEA’s push for improved recycling and waste reduction. In 2022, recycling rates improved from 55% to 57%—but we believe food rescue must also be a priority.</p>
-
-      <p>By empowering communities to act in real time, FoodReconnect is proud to be part of the movement toward a <strong>zero-waste future</strong>.</p>
-    </section>
-  </div>
-
   <!-- Post Food Modal -->
   <div id="postFoodModal" class="modal">
     <div class="modal-content">
@@ -94,11 +63,11 @@
       <form id="postFoodForm">
         <div class="form-group">
           <label>Food Title</label>
-          <input type="text" id="foodTitle" required />
+          <input type="text" id="foodTitle" name="title" required />
         </div>
         <div class="form-group">
           <label>Category</label>
-          <select id="foodCategory" required>
+          <select id="foodCategory" name="category" required>
             <option value="">Select Category</option>
             <option value="Buffet">Buffet</option>
             <option value="Desserts">Desserts</option>
@@ -110,53 +79,52 @@
         </div>
         <div class="form-group">
           <label>Description</label>
-          <textarea id="foodDescription" required></textarea>
+          <textarea id="foodDescription" name="description" required></textarea>
         </div>
         <div class="form-group">
           <label>Cuisine Type</label>
-          <input type="text" id="cuisineType" placeholder="e.g., Indian, Chinese, Western" />
+          <input type="text" id="cuisineType" name="cuisine_type" placeholder="e.g., Indian, Chinese, Western" />
         </div>
         <div class="form-group">
           <label>Estimated Servings</label>
-          <input type="number" id="servings" min="1" required />
+          <input type="number" id="servings" name="servings" min="1" required />
         </div>
         <div class="form-group">
           <label>Best Before (Time)</label>
-          <input type="datetime-local" id="bestBefore" required />
+          <input type="datetime-local" id="bestBefore" name="best_before" required />
         </div>
         <div class="form-group">
           <label>Pickup Location</label>
-          <input type="text" id="pickupLocation" placeholder="Enter address" required />
+          <input type="text" id="pickupLocation" name="location" placeholder="Enter address" required />
           <button type="button" class="location-btn" onclick="getCurrentLocation()">Use Current Location</button>
         </div>
         <div class="form-group">
-          <label>Image URL (optional)</label>
+          <label>Image Upload (optional)</label>
           <input type="file" id="foodImage" name="foodImage" accept="image/*" capture="environment" />
         </div>
         <div class="form-group">
           <label>WhatsApp Number</label>
-          <input type="tel" id="whatsappNumber" placeholder="+65..." required />
+          <input type="tel" id="whatsappNumber" name="whatsapp_number" placeholder="+65..." required />
         </div>
         <button type="submit" class="btn btn-primary" style="width: 100%;">Post Food</button>
       </form>
     </div>
   </div>
 
+  <!-- Request Pickup Modal -->
+  <div id="pickupModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('pickupModal')">&times;</span>
+      <h2>Request Food Pickup</h2>
+      <p id="pickupFoodTitle"></p>
+      <label for="pickupQuantity">How many servings would you like to pick up?</label>
+      <input type="number" id="pickupQuantity" min="1" required />
+      <button class="btn btn-primary" onclick="confirmPickup()">Confirm & Message via WhatsApp</button>
+    </div>
+  </div>
+
   <!-- Notifications -->
   <div id="notification" class="notification"></div>
-
-  <!-- Request Pickup Modal-->
-<div id="pickupModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal('pickupModal')">&times;</span>
-    <h2>Request Food Pickup</h2>
-    <p id="pickupFoodTitle"></p>
-    <label for="pickupQuantity">How many servings would you like to pick up?</label>
-    <input type="number" id="pickupQuantity" min="1" required />
-    <button class="btn btn-primary" onclick="confirmPickup()">Confirm & Message via WhatsApp</button>
-  </div>
-</div>
-
 
   <script src="scripts.js" defer></script>
 </body>

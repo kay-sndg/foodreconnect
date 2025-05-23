@@ -57,6 +57,8 @@ exports.getFoodById = async (req, res) => {
 // POST create new food
 exports.createFood = async (req, res) => {
   try {
+    console.log('Uploaded file:', req.file);
+
     const {
       title, category, description, cuisine_type, servings,
       best_before, location, latitude, longitude,
